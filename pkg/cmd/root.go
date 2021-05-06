@@ -21,6 +21,5 @@ func Execute(){
 
 func init() {
 	rootCmd.AddCommand(getProcesses)
-
-	//getProcesses.Flags()
+	rootCmd.AddCommand(getGoProcesses)
 }

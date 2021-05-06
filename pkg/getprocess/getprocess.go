@@ -55,17 +55,26 @@ func ListGoProcess()error{
 	}
 
 	for i, process := range processList {
-		s = []string{
-			strconv.Itoa(i),
-			process.Executable(),
-			strconv.Itoa(process.Pid()),
+		path, err := process.Path()
+
+		if err != nil {
+			return err
 		}
 
-		d = append(d, s)
+		ok,_ := isGo(path)
+		if ok {
+			s = []string{
+				strconv.Itoa(i),
+				process.Executable(),
+				strconv.Itoa(process.Pid()),
+			}
+
+			d = append(d, s)
+		}
 	}
 
 	table := tablewriter.NewWriter(os.Stdout)
-	table.SetHeader([]string{"S/N", "Process", "PID"})
+	table.SetHeader([]string{"S/N", "Go-Processes", "PID"})
 
 	for _, v := range d {
 		table.Append(v)
