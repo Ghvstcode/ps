@@ -4,14 +4,8 @@ import (
 	"github.com/Ghvstcode/process/pkg/cmd"
 )
 
-func main(){
+func main() {
 	cmd.Execute()
 }
-
-
-
-
-
-
 
 
